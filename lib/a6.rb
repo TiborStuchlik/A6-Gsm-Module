@@ -89,13 +89,9 @@ module Lib
 
     def send_end
       ra = @modem.cmd 0x1a.chr, "OK"
-      #TODO need restart modem here, otherwise modem halt.
+      #TODO need restart modem here, otherwise modem halt, when trying write data.
       @modem.restart
       ra
-    end
-
-    def activate_gprs( pdp_type, apn)
-
     end
 
     def close

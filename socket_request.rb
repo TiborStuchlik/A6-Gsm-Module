@@ -23,7 +23,7 @@ def disconnect_network
 end
 
 def conect_server
-  puts @a6.start_tcp( "90.177.19.196", 888).to_s
+  puts @a6.start_tcp( "90.177.19.196", 889).to_s
 end
 
 def disconnect_server

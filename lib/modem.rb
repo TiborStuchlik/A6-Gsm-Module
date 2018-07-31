@@ -16,7 +16,7 @@ module Modem
   end
 
   def self.restart
-    puts "Restarting modem..."
+    puts "Restarting port connection..."
     t = @serial.read_timeout
     @serial.close
     @serial = SerialPort.new( @port - 1, @baud, 8, 1, SerialPort::NONE)
