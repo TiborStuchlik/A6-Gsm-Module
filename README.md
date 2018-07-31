@@ -3,6 +3,5 @@
 
  board: hw-54<br/>
  chip: A6 <br/>
- manufactured: Ai Thinker Co.LTD
- 
- firmware: V03.05.20170090814H38<br/>
+ manufactured: Ai Thinker Co.LTD<br/>
+  firmware: V03.05.20170090814H38<br/><hr/>
