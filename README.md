@@ -1,4 +1,4 @@
-# A6-Gsm-Module
+# A6 GSM Module
 **Ruby Test A6 module. Connect Tcp Socket. Http Server**
 
 board: hw-549<br/>
