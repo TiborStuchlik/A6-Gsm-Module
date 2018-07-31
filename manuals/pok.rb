@@ -1,0 +1,2 @@
+class Pok
+end
