@@ -6,7 +6,10 @@ chip: A6 <br/>
 manufactured: Ai Thinker Co.LTD<br/>
 firmware: V03.05.20170090814H38<br/>
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+| Front | back |
+| --- | --- |
+| ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png) | List all new or modified files |
+| git diff | Show file differences that haven't been staged |
 
 <table>
 <tr>
