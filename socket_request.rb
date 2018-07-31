@@ -47,7 +47,7 @@ end
 begin
   init_connection
   conect_server
-  send_data("AB")
+  send_data("TEST DATA")
   disconnect_server
   disconnect_network
 
