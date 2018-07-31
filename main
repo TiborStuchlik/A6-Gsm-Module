@@ -1,0 +1,112 @@
+require 'serialport'
+
+ca = [
+    "AT",
+    "AT",
+    "ATE0",
+    "AT+CGATT=0",
+    "AT+CGATT=1",
+    "AT+CGDCONT=1,IP,internet",
+    "AT+CGACT=1,1",
+    'AT+CIPSTART=TCP,90.177.19.196,888',
+
+]
+
+ea = [
+    "AT+CIPSTART=TCP,\"h.tyb.cz\",888",
+    "AT+CIPSEND",
+    "GET / HTTP/1.1\r\nHOST: h.tyb.cz\r\n\r\n" + 0x1a.chr
+]
+
+@sp = SerialPort.new(2, 115200, 8, 1, SerialPort::NONE)
+@sp.read_timeout = 500
+
+
+ca.each do |c|
+  puts(c)
+  @sp.write(c)
+  @sp.write("\r\n")
+
+  endres = false
+  while !endres
+    endline = false
+    chl = ""
+    while !endline
+      ch = @sp.read(1)
+      chl = chl + ch.to_s
+      if ch == "\n"
+        endline = true
+      end
+    end
+    if chl.include?("OK\r\n")
+      endres = true
+    elsif chl.include?("ERROR")
+      endres = true
+    else
+    end
+    puts "--- " + chl.to_s
+  end
+end
+
+def wsec
+  sleep(1)
+  #s = "GET / HTTP/1.1\r\nHOST: h.tyb.cz:888\r\n\r\n"
+  s = "HELLOSERVER"
+  puts "send write command: " + s.size.to_s
+  @sp.write "AT+CIPSEND=" + s.size.to_s
+  sleep(0.5)
+  @sp.write("\r\n")
+  rt = @sp.read(20)
+  puts rt
+  puts "cekam na povoleni zapisu:"
+  rt = @sp.read(20)
+  puts rt
+#puts "write body"
+#@sp.write "GET / HTTP/1.1\r\nHOST: h.tyb.cz:888\r\n\r\n" + 0x1a.chr + 0.chr
+#puts @sp.read(30)
+  sleep(0.5)
+  #@sp.close
+  #@sp = SerialPort.new(2, 115200, 8, 1, SerialPort::NONE)
+  puts "zapisuju data"
+  @sp.write s
+  @sp.write "0x1a"
+
+#return
+
+  #puts "cekam na vysledek"
+  rt = @sp.read(200)
+  puts rt
+  puts "zapsano"
+
+  #@sp.write("\r\n")
+  #puts "zapsano 1 radek + 1 cr/lf"
+  #@sp.write "HOST: h.tyb.cz"
+  #@sp.write("\r\n")
+  #@sp.write("\r\n")
+  #puts "zapsano 2 radek + 2 cr/lf"
+  #puts "cekam na vysledek:"
+  #rt = @sp.read(20)
+  #puts rt
+  puts "a radsi 2x:"
+  sleep(3)
+  rt = @sp.read(200)
+  puts rt
+  @sp.write "AT+CIPCLOSE\r\n"
+  sleep(1)
+  rt = @sp.read(20)
+  puts rt
+  @sp.write "AT+CIPSHUT\r\n"
+  rt = @sp.read(20)
+  puts rt
+  @sp.write "ATE1\r\n"
+  rt = @sp.read(20)
+  puts rt
+  rt = @sp.read(20)
+  puts rt
+  rt = @sp.read(20)
+  puts rt
+end
+
+wsec
+
+@sp.close
