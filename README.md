@@ -8,14 +8,6 @@ firmware: V03.05.20170090814H38<br/>
 
 | Front | back |
 | --- | --- |
-| ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png) | List all new or modified files |
+| ![Front](https://github.com/TiborStuchlik/A6-Gsm-Module/blob/master/manuals/board_front.jpg?raw=true) | ![Front](https://octodex.github.com/images/yaktocat.png) |
 | git diff | Show file differences that haven't been staged |
 
-<table>
-<tr>
-<td>
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-</td>
-<td>hok</td>
-</tr>
-</table>
